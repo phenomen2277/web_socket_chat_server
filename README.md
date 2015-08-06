@@ -47,6 +47,7 @@ chat.stop_server()
 }
 end
 
+puts "Running..........."
 wait = gets
 ```
 
