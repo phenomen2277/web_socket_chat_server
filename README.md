@@ -16,8 +16,12 @@ $ bundle
 
 Or install it yourself as:
 
+```
 $ gem install web_socket_chat_server
+```
 
+## Documentation
+For better understanding, check the docs at http://abulewis.com/ws/doc/WebSocketChatServer/ChatServer.html
 ## Usage
 
 An example on how to run the server:
