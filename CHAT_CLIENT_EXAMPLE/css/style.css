@@ -1,0 +1,41 @@
+html, body{
+	height: 100%;
+	padding-top: 30px;
+	overflow: hidden;
+}
+
+#chat-log-wrapper {
+	background-color: #DCDFEE;
+	overflow: scroll; 
+	height: 400px;
+}
+#chat-log{
+	height: 100%;
+	overflow: auto;
+}
+
+#users-list{
+	background-color: #BBDFEE;
+	height: 400px;
+	font-weight: bold;
+}
+
+#chat-components {
+	margin-top: 20px;
+}
+
+#login-div{
+	margin-top: 200px;
+}
+
+#chat-log{
+	overflow: scroll;
+}
+
+#users-list {
+	overflow: scroll;
+}
+
+#chat-text-wrapper{
+	padding: 0px;
+}
