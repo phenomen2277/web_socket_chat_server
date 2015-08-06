@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["jonemob@gmail.com"]
   spec.summary       = %q{A wrapper class for em-websocket (https://github.com/igrigorik/em-websocket) implementing a custom chat server protocol.}
   spec.description   = %q{For more details, please read the documentation at http://abulewis.com/doc/WebSocketChatServer.html}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/phenomen2277/web_socket_chat_server"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
