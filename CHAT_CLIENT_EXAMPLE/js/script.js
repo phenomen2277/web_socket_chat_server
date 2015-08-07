@@ -1,5 +1,4 @@
 $(function(){
-	var ws = null;
 	showLoginForm();
 	hideChatComponents();
 	$("#login-form").on("submit", function(e){
