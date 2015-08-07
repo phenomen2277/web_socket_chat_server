@@ -38,7 +38,7 @@ class ChatServer
 		raise ArgumentError, "The :port parameter is required" unless args.has_key?(:port)
 		raise ArgumentError, "The port value is not valid" unless valid_port?( args[:port])
 		@max_connections = args[:max_connections].to_s.to_i
-		@max_connections = 100 if @max_connections == 0
+		@max_connections = 100 if @max_connections <= 1
 		@host = args[:host]
 		@port = args[:port]
 		@server_started = false
@@ -220,7 +220,9 @@ end
 						when "ban_user"
 							break if data == ""
 							unless user_admin?(user)
-								ws.close
+								response = create_response_json("ban_user", false, "Only an admin can ban a user.")
+								yield response if block_given?
+								ws.send(response)
 								break
 							end
 
