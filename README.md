@@ -7,17 +7,7 @@ A wrapper class for em-websocket (https://github.com/igrigorik/em-websocket) imp
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'web_socket_chat_server'
-```
-
-And then execute:
-
-$ bundle
-
-Or install it yourself as:
+Type this in the console:
 
 ```
 $ gem install web_socket_chat_server
