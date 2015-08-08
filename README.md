@@ -77,7 +77,7 @@ The server will respond with a JSON hash of the format {command: ”…”, data
 
 {command: ”chat_message”, data: {from_user: ”chuck_norris”, message: ”The message”}, information: ”Some details.”}
 
-{command: ”ban_user”, data: TRUE or FALSE, information: ”Some details.”}
+{command: ”ban_user”, data: boolean, information: ”Some details.”}
 
 {command: ”private_message”, data: {from_user: ”chuck_norris”, message: ”The message”}, information: ”Some details.”}
 
