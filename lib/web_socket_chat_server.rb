@@ -91,8 +91,6 @@ end
 	def stop_server()
 		return false unless @server_started
 		@server_started = false
-		@banned_usernames.clear if @banned_usernames.count > 0
-		@admins.clear if @admins.count > 0
 		@connected_users.clear if @connected_users.count > 0
 		begin
 			EM::WebSocket.stop()	
@@ -138,14 +136,6 @@ end
 							break
 						end 
 
-						if admin_credentials_invalid?(username, password)
-							response = create_response_json("failed_connection", nil, "Invalid credentials.")
-							yield response if block_given?
-							ws.send(response)
-							ws.close
-							break
-						end
-
 						if user_credentials_valid?(username, password) == false 
 							response = create_response_json("failed_connection", nil, "Invalid user creadentials. The username has to be at least 3 alphanumeric characters, and the password at least 6 alphanumeric characters.")
 							yield response if block_given?
@@ -165,9 +155,23 @@ end
 						number_of_tries = 0
 						while user_exists?(user)
 							number_of_tries = number_of_tries + 1
-							user.username = user.username + Random.rand(1..9999).to_s
+							user.username = user.username + Random.rand(1..@max_connections).to_s
 
-							if number_of_tries > 15 
+							if number_of_tries > 30 
+								response = create_response_json("failed_connection", nil, "The username exists already.")
+								yield response if block_given?
+								ws.send(response)
+								ws.close
+								break
+							end
+						end
+
+						number_of_tries = 0
+						while admin_credentials_invalid?(user.username, user.password)
+							number_of_tries = number_of_tries + 1
+							user.username = user.username + Random.rand(1..@max_connections).to_s
+
+							if number_of_tries > 30 
 								response = create_response_json("failed_connection", nil, "The username exists already.")
 								yield response if block_given?
 								ws.send(response)

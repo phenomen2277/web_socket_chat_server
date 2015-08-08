@@ -2,6 +2,9 @@
 
 A wrapper class for em-websocket (https://github.com/igrigorik/em-websocket) implementing a custom chat server protocol.
 
+
+![alt tag](http://abulewis.com/ws/wscs.png)
+
 ## Installation
 
 Add this line to your application's Gemfile:
