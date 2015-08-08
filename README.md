@@ -67,16 +67,18 @@ You have to pass the query parameters username & password to the socket client w
 On successful connection, you can send a JSON hash of the format {command: ”…”, data: ”…}
 
 ### Available commands are:
+```
 {command: ”chat_message”, data: ”your message”}
 
 {command: ”private_message”, data: {to_user:  ”chuck_norris”, message: ”Private message”}}
 
 {command: ”ban_user”, data: ”chuck_norris”}
-
+```
 
 The server will respond with a JSON hash of the format {command: ”…”, data: ”…”, information: ”…”}
 
 ### Available responses are:
+```
 {command: ”failed_connection”, data: nil, information: ”Some details”}
 
 {command: ”successful_connection”, data: array_of_connected_users, information: ”Some details”}
@@ -92,4 +94,4 @@ The server will respond with a JSON hash of the format {command: ”…”, data
 {command: ”system_information”, data: ”Issue”, information: ”Some details.”}
 
 {command: ”user_disconnected”, data: ”username”, information: ”Some details.”}
-
+```
