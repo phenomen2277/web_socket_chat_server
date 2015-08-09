@@ -28,7 +28,7 @@ admins = []
 admins << admin1
 admins << admin2
 
-chat = WebSocketChatServer::ChatServer.new(:host=> "0.0.0.0", :port => "8080", :admins => admins)
+chat = WebSocketChatServer::ChatServer.new(:host=> "0.0.0.0", :port => "8080", :admins => admins, :allowed_origin => "http://localhost:8888")
 
 chat.start_server do |response|
 puts response
