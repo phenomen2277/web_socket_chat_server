@@ -85,3 +85,6 @@ The server will respond with a JSON hash of the format {command: ”…”, data
 
 {command: ”user_disconnected”, data: ”username”, information: ”Some details.”}
 ```
+
+### Want to write the client in JS?
+Check this out http://abulewis.com/blog/writing-a-wrapper-websocket-client-class-in-js/
