@@ -87,4 +87,4 @@ The server will respond with a JSON hash of the format {command: ”…”, data
 ```
 
 ### Want to write the client in JS?
-Use the demo attached to this repor or check this out http://abulewis.com/blog/writing-a-wrapper-websocket-client-class-in-js/
+Use the demo attached to this repository or check this out http://abulewis.com/blog/writing-a-wrapper-websocket-client-class-in-js/
