@@ -33,10 +33,16 @@ class ChatServer
 	# * +:tls-options+ (Optional) - The TLS options as allowed by em-websocket (https://github.com/igrigorik/em-websocket#secure-server). 
 	# * +:secure_proxy+ (Optional) - When ruinng behind a SSL proxy (https://github.com/igrigorik/em-websocket#running-behind-an-ssl-proxyterminator-like-stunnel).
 	# * +:admins+ (Optional) - In order to have admins (for banning users). Pass an array of ChatUser objects to this key. The ChatUser object contains of username and password attributes. The username must consist of at least 3 alphanumeric characters. The password must at least consist of 6 alphanumeric characters. 
+	# * +:allowed_origin (Optional) - Allow connections only from the passed URI. The URI should be the domain and/or port (depending on the server setup), in which your application is operating. 
 	def initialize(args = {:host => "0.0.0.0", :port => 8080})
+		@server_started = false
 		raise ArgumentError, "The :host parameter is required" unless args.has_key?(:host)
 		raise ArgumentError, "The :port parameter is required" unless args.has_key?(:port)
 		raise ArgumentError, "The port value is not valid" unless valid_port?( args[:port])
+
+		@origin = ""
+		@origin = args[:allowed_origin] if args.has_key?(:allowed_origin)
+
 		@max_connections = args[:max_connections].to_s.to_i
 		@max_connections = 100 if @max_connections <= 1
 		@host = args[:host]
@@ -114,6 +120,13 @@ end
 			EM::WebSocket.run(@server_options) do |ws|
 				ws.onopen { |handshake|
 					begin
+						unless @origin.empty?
+							if @origin != handshake.origin
+								ws.close
+								break
+							end
+						end
+
 						response = nil
 						if (@connected_users.count + 1) > @max_connections
 							response = create_response_json("failed_connection", nil, "The max connections limit is reached.")
