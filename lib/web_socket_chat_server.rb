@@ -44,17 +44,18 @@ class ChatServer
 		@origin = args[:allowed_origin] if args.has_key?(:allowed_origin)
 
 		@max_connections = args[:max_connections].to_s.to_i
-		@max_connections = 100 if @max_connections <= 1
+		@max_connections = 100 if @max_connections <= 0
+		
 		@host = args[:host]
 		@port = args[:port]
-		@server_started = false
+
 		@admins = []
 		@banned_usernames = []
 		@connected_users = Hash.new
-		
 		@server_options = Hash.new
+
 		@server_options[:host] = @host
-		@server_options[:port] = @port.to_i
+		@server_options[:port] = @port.to_s.to_i
 		@server_options[:secure] = args[:secure] if args.has_key?(:secure)
 		@server_options[:tls_options] = args[:tls_options] if args.has_key?(:tls_options)
 		@server_options[:secure_proxy] = args[:secure_proxy] if args.has_key?(:secure_proxy)
